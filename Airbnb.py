@@ -118,7 +118,7 @@ with tab2:
     df_bed_avai=pd.DataFrame(df_bed_avai)
     df_bed_avai.rename(columns={"availability":"Total_Availability"},inplace=True)
     df_bed_avai.reset_index(inplace=True)
-    fig_31 = px.bar(df_bed_avai,x="bedrooms",y="Total_Availability",title='Average Price for each Room type')
+    fig_31 = px.bar(df_bed_avai,x="bedrooms",y="Total_Availability",title='Average Availability of Bedrooms')
     st.plotly_chart(fig_31)
  
     
@@ -239,9 +239,9 @@ with tab2:
                     Geo_country=[feature["properties"]["name"] for feature in data1["features"]]
                     Geo_country.sort()
                     Geo_country_df=pd.DataFrame({"country":Geo_country})
-                    Geo_country_df["property_type"]=df["property_type"]
+                    Geo_country_df["name"]=df["name"]
                     Geo_country_df["price"]=df["price"]
-                    fig = px.choropleth( Geo_country_df, geojson=url, featureidkey='properties.name',locations='country',color='property_type',hover_name="country",hover_data="price",color_continuous_scale='thermal',title = 'Geo map for Airbnb  Analysis')
+                    fig = px.choropleth( Geo_country_df, geojson=url, featureidkey='properties.name',locations='country',color='name',hover_name="country",hover_data="price",color_continuous_scale='thermal',title = 'Geo map for Airbnb  Analysis')
                     fig.update_geos(fitbounds="locations", visible=False)
                     fig.update_layout(title_font=dict(size=33),title_font_color='#6739b7',width=800, height=800)
                     fig['layout']['xaxis']['fixedrange'] = False 
